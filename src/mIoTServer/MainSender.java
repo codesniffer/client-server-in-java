@@ -14,9 +14,14 @@ public class MainSender {
 	        while (true) {
 	            System.out.println("Enter IP address");
 	            String serverIP = s.nextLine();
+	            new Sender().sendData(serverIP, 80, 320);
 	            System.out.println(serverIP);
             }
-        } finally {
+        } catch (Exception ex) {
+        	ex.printStackTrace();
+        }
+        
+        finally {
             if (s != null) {
                 s.close();
             }

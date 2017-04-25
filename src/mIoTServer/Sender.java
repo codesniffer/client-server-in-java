@@ -10,11 +10,7 @@ import java.io.InputStreamReader;
 
 class Sender{
 
-    String programName = "";
-    Sender (String programName){
-        this.programName = programName;
-    }
-
+   
     String generateData (int sizeInBytes) {
 
         int numberofBytes = sizeInBytes;
@@ -31,6 +27,7 @@ class Sender{
 
         String payload = generateData(size);
         Thread t = new Thread(new SenderWorker(serverIP, serverPort,payload));
+        t.start();
     }
 
     class SenderWorker  implements Runnable  {
@@ -59,7 +56,7 @@ class Sender{
 
                 long estimatedTime = System.nanoTime() - startTime;
 
-                System.out.println("Response from Server: " + response +"; Time to receive: " + estimatedTime + " ns");
+                System.out.println("Response from Server: " + response +"; Time to receive: " + (int) (estimatedTime / 1000000) + " ms");
 
             } catch (IOException e) {
                 e.printStackTrace();

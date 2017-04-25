@@ -50,6 +50,8 @@ class Receiver implements Runnable {
                     if (input == null) {
                         break;
                     }
+                    
+                    System.out.println("Server Receivded -> " + input);
                     out.println("K");
                 }
             }
